@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Participar | SORTTEX PREMIUM</title>
+    <link rel="stylesheet" href="css/participar.css">
+    <script src="js/datos.js" defer></script>
+    <script src="js/participar.js" defer></script>
+</head>
+
+<body>
+    <header>
+        <a href="index.html" aria-label="SORTTEX, inicio"><img src="img/logo-sorttex.png" alt="SORTTEX PREMIUM" width="150" height="84"></a>
+        <a href="index.html">Volver al inicio</a>
+    </header>
+
+    <main>
+        <h1>Participa por una laptop</h1>
+        <p>
+            Completa tus datos y envía tu comprobante.
+            Asignaremos tus números cuando aprobemos el pago.
+        </p>
+
+        <form id="formulario-participacion">
+
+            <!-- PASO 1: DATOS DEL PARTICIPANTE -->
+            <section aria-labelledby="titulo-datos">
+                <span>Paso 1</span>
+                <h2 id="titulo-datos">Tus datos</h2>
+
+                <div>
+                    <label for="dni">DNI</label>
+                    <input type="text" id="dni" name="dni" inputmode="numeric" pattern="[0-9]{8}" minlength="8"
+                        maxlength="8" placeholder="8 dígitos" required>
+                </div>
+
+                <div>
+                    <label for="nombre">Nombre completo</label>
+                    <input type="text" id="nombre" name="nombre" autocomplete="name" minlength="3" maxlength="150"
+                        required>
+                </div>
+
+                <div>
+                    <label for="celular">Celular</label>
+                    <input type="tel" id="celular" name="celular" autocomplete="tel" inputmode="numeric"
+                        pattern="9[0-9]{8}" maxlength="9" placeholder="9 dígitos" required>
+                </div>
+
+                <div>
+                    <label for="correo">Correo electrónico — opcional</label>
+                    <input type="email" id="correo" name="correo" autocomplete="email" maxlength="150">
+                </div>
+            </section>
+
+            <!-- PASO 2: CANTIDAD Y MONTO -->
+            <section aria-labelledby="titulo-participacion">
+                <span>Paso 2</span>
+                <h2 id="titulo-participacion">Tu participación</h2>
+
+                <p>Cada participación cuesta S/ 100 y equivale a un número.</p>
+
+                <div>
+                    <label for="cantidad">Cantidad de participaciones</label>
+                    <input type="number" id="cantidad" name="cantidad" min="1" max="100" step="1" value="1"
+                        aria-describedby="ayuda-cantidad" required>
+                    <small id="ayuda-cantidad">
+                        Cada participación cuesta S/ 100.
+                    </small>
+                </div>
+
+                <div>
+                    <span>Total a pagar</span>
+                    <strong id="total-pagar" aria-live="polite">S/ 100.00</strong>
+                </div>
+
+                <div>
+                    <h3>Pago por Yape</h3>
+                    <p>El pago se realiza directamente al organizador.</p>
+                </div>
+            </section>
+
+            <!-- PASO 3: COMPROBANTE -->
+            <section aria-labelledby="titulo-comprobante">
+                <span>Paso 3</span>
+                <h2 id="titulo-comprobante">Envía tu comprobante</h2>
+
+                <div>
+                    <label for="operacion">Número de operación de Yape</label>
+                    <input type="text" id="operacion" name="operacion" maxlength="40" required>
+                </div>
+
+                <div>
+                    <label for="comprobante">Imagen del comprobante</label>
+
+                    <input type="file" id="comprobante" name="comprobante" accept="image/jpeg,image/png"
+                        aria-describedby="ayuda-comprobante error-comprobante" required>
+
+                    <small id="ayuda-comprobante">
+                        Selecciona una imagen JPG o PNG de hasta 5 MB.
+                    </small>
+
+                    <p id="error-comprobante" class="error-campo" role="alert"></p>
+
+                    <figure id="vista-comprobante" class="vista-comprobante" hidden>
+                        <img id="imagen-comprobante" alt="Vista previa del comprobante seleccionado">
+
+                        <figcaption id="nombre-comprobante"></figcaption>
+
+                        <button type="button" id="quitar-comprobante" class="boton-quitar">
+                            Quitar imagen
+                        </button>
+                    </figure>
+                </div>
+
+                <p>
+                    Tu solicitud será revisada por el administrador.
+                    Los números se asignan únicamente al aprobar el pago.
+                </p>
+
+                <p id="error-envio" class="error-campo" role="alert"></p>
+                <button type="submit">
+                    Enviar para revisión
+                </button>
+            </section>
+
+        </form>
+        <section id="confirmacion-solicitud" class="confirmacion-solicitud" aria-labelledby="titulo-confirmacion"
+            hidden>
+            <span class="estado-solicitud">Pendiente de revisión</span>
+
+            <h2 id="titulo-confirmacion" tabindex="-1">
+                Tu solicitud está lista para revisión
+            </h2>
+
+            <p>
+                <span id="confirmacion-nombre"></span>,
+                tus números se asignarán cuando el administrador
+                confirme el pago.
+            </p>
+
+            <dl class="resumen-solicitud">
+                <div>
+                    <dt>Participaciones solicitadas</dt>
+                    <dd id="confirmacion-cantidad"></dd>
+                </div>
+
+                <div>
+                    <dt>Monto informado</dt>
+                    <dd id="confirmacion-monto"></dd>
+                </div>
+
+                <div>
+                    <dt>Número de operación</dt>
+                    <dd id="confirmacion-operacion"></dd>
+                </div>
+            </dl>
+
+            <p class="nota-confirmacion">
+                El comprobante enviado queda sujeto a verificación.
+                Esta solicitud todavía no confirma tu participación.
+            </p>
+
+            <a href="participantes.html" class="enlace-participantes">
+                Consultar participantes
+            </a>
+
+            <button type="button" id="nueva-solicitud">
+                Registrar otra solicitud
+            </button>
+        </section>
+    </main>
+
+    <footer>
+        <p>SORTTEX PREMIUM</p>
+        <small>Desarrollado por LF TECH</small>
+    </footer>
+</body>
+
+</html>

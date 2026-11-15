@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Administración | SORTTEX PREMIUM</title>
+
+    <link rel="stylesheet" href="../css/estilos.css">
+    <link rel="stylesheet" href="../css/admin.css">
+</head>
+
+<body class="pagina-acceso">
+    <main class="acceso">
+        <a class="marca" href="../index.html" aria-label="Volver a SORTTEX"><img src="../img/logo-sorttex.png" alt="SORTTEX PREMIUM" width="160" height="90"></a>
+
+        <section class="tarjeta-acceso" aria-labelledby="titulo-acceso">
+            <span class="etiqueta">ADMINISTRACIÓN</span>
+
+            <h1 id="titulo-acceso">Bienvenido</h1>
+
+            <p>
+                Ingresa para revisar pagos y administrar tus sorteos.
+            </p>
+
+            <form id="formulario-acceso">
+                <div class="campo-admin">
+                    <label for="correo">Correo electrónico</label>
+
+                    <input type="email" id="correo" name="correo" autocomplete="username"
+                        placeholder="nombre@correo.com" required>
+                </div>
+
+                <div class="campo-admin">
+                    <label for="clave">Contraseña</label>
+
+                    <div class="campo-clave">
+                        <input type="password" id="clave" name="clave" autocomplete="current-password" required>
+
+                        <button type="button" id="mostrar-clave" class="mostrar-clave" aria-controls="clave"
+                            aria-pressed="false">
+                            Mostrar
+                        </button>
+                    </div>
+                </div>
+
+                <button type="submit" class="boton boton-ingresar">
+                    Ingresar
+                </button>
+            </form>
+        </section>
+
+        <a class="volver-web" href="../index.html">
+            Volver a la página principal
+        </a>
+
+        <small class="firma">Desarrollado por LF TECH</small>
+    </main>
+
+    <script src="../js/acceso.js"></script>
+</body>
+
+</html>

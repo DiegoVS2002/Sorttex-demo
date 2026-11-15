@@ -1,0 +1,18 @@
+/* Estado local de la maqueta. No proporciona autenticación ni privacidad real. */
+window.Sorttex = (() => {
+ const key='sorttex-vista-v1';
+ const initial=()=>({sorteos:[{id:'primero',nombre:'Laptop',precio:100,capacidad:100,estado:'ABIERTO',descripcion:'Tu oportunidad. Tu momento.'}],solicitudes:[],resultados:[]});
+ function load(){const raw=localStorage.getItem(key); if(!raw)return initial(); const s=JSON.parse(raw);if(!Array.isArray(s.sorteos)||!Array.isArray(s.solicitudes)||!Array.isArray(s.resultados))throw Error('No se pudieron leer los datos guardados.');return s;}
+ function save(s){try{localStorage.setItem(key,JSON.stringify(s));}catch(e){throw Error('No se pudo guardar. El espacio del navegador puede estar lleno; prueba una imagen más pequeña.');}}
+ const money=n=>new Intl.NumberFormat('es-PE',{style:'currency',currency:'PEN'}).format(n);
+ const num=n=>String(n).padStart(3,'0');
+ const escape=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+ const active=s=>s.sorteos.find(r=>r.estado==='ABIERTO')||s.sorteos.find(r=>r.estado==='CERRADO');
+ const approved=(s,id)=>s.solicitudes.filter(r=>r.sorteo===id&&r.estado==='APROBADO');
+ const count=(s,id)=>approved(s,id).reduce((n,r)=>n+r.numeros.length,0);
+ function submit(data){const s=load(),r=active(s);if(!r||r.estado!=='ABIERTO')throw Error('Este sorteo no recibe solicitudes.');if(!Number.isInteger(data.cantidad)||data.cantidad<1||data.cantidad>r.capacidad-count(s,r.id))throw Error('La cantidad supera las participaciones disponibles.');if(s.solicitudes.some(x=>x.operacion.toLowerCase()===data.operacion.toLowerCase()))throw Error('Esta operación ya tiene una solicitud registrada.');const q={...data,id:crypto.randomUUID(),sorteo:r.id,estado:'PENDIENTE',numeros:[],fecha:new Date().toISOString(),monto:data.cantidad*r.precio};s.solicitudes.push(q);save(s);return q;}
+ function review(id,approve,motivo=''){const s=load(),q=s.solicitudes.find(x=>x.id===id);if(!q||q.estado!=='PENDIENTE')throw Error('La solicitud ya fue revisada.');const r=s.sorteos.find(x=>x.id===q.sorteo);if(!r||!['ABIERTO','CERRADO'].includes(r.estado))throw Error('El sorteo ya no admite cambios.');if(approve){const used=new Set(approved(s,r.id).flatMap(x=>x.numeros));const free=Array.from({length:r.capacidad},(_,i)=>i+1).filter(n=>!used.has(n));if(free.length<q.cantidad)throw Error('No quedan suficientes números. Coordina la solución antes de aprobar.');q.numeros=free.slice(0,q.cantidad);q.estado='APROBADO';}else{if(!motivo.trim())throw Error('Escribe el motivo del rechazo.');q.estado='RECHAZADO';q.motivo=motivo.trim();}save(s);return q;}
+ function raffle(id){const s=load(),r=s.sorteos.find(x=>x.id===id);if(!r||r.estado!=='CERRADO')throw Error('Cierra las inscripciones antes de sortear.');if(s.resultados.some(x=>x.sorteo===id))throw Error('Este sorteo ya tiene ganador.');if(s.solicitudes.some(x=>x.sorteo===id&&x.estado==='PENDIENTE'))throw Error('Revisa todas las solicitudes pendientes antes de sortear.');const pool=approved(s,id).flatMap(q=>q.numeros.map(n=>({nombre:q.nombre,numero:n})));if(!pool.length)throw Error('No hay participaciones confirmadas.');const max=4294967296,limit=max-max%pool.length;let a=new Uint32Array(1);do{crypto.getRandomValues(a);}while(a[0]>=limit);const win={...pool[a[0]%pool.length],sorteo:id,premio:r.nombre,fecha:new Date().toISOString()};s.resultados.push(win);r.estado='FINALIZADO';save(s);return win;}
+ const alias=name=>{const a=name.trim().split(/\s+/);return a[0]+(a.length>1?' '+a.at(-1)[0]+'.':'');};
+ return {load,save,money,num,escape,active,approved,count,submit,review,raffle,alias};
+})();

@@ -1,0 +1,441 @@
+/* Colores de SORTTEX */
+:root {
+  color-scheme: dark;
+  
+  --fondo: #080b10;
+  --tarjeta: #111b2a;
+  --dorado: #e8b84b;
+  --dorado-claro: #ffe2a0;
+  --azul: #008cff;
+  --texto: #f5f7fa;
+  --texto-secundario: #aab4c2;
+  --borde: #293345;
+}
+
+/* Base */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--fondo);
+  color: var(--texto);
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.6;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Cabecera */
+header {
+  width: min(100% - 32px, 1000px);
+  min-height: 84px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  border-bottom: 1px solid var(--borde);
+}
+
+header a:first-child {
+  color: var(--dorado);
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+header a:last-child {
+  padding: 10px 14px;
+  border: 1px solid var(--borde);
+  border-radius: 10px;
+  color: var(--texto-secundario);
+  font-size: 14px;
+}
+
+header a:last-child:hover {
+  border-color: var(--dorado);
+  color: var(--dorado-claro);
+}
+
+/* Contenido */
+main {
+  width: min(100% - 32px, 720px);
+  margin: 40px auto 64px;
+}
+
+h1 {
+  margin: 24px 0 10px;
+  font-size: clamp(28px, 5vw, 40px);
+  line-height: 1.2;
+  letter-spacing: -1px;
+}
+
+main>p {
+  color: var(--texto-secundario);
+}
+
+form {
+  display: grid;
+  gap: 20px;
+  margin-top: 32px;
+}
+
+/* Tarjetas de los pasos */
+form section {
+  padding: 28px;
+  background: var(--tarjeta);
+  border: 1px solid var(--borde);
+  border-radius: 18px;
+}
+
+form section>span {
+  display: inline-block;
+  padding: 4px 10px;
+  background: rgb(232 184 75 / 10%);
+  border-radius: 6px;
+  color: var(--dorado);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+h2 {
+  margin: 12px 0 20px;
+  font-size: 23px;
+  line-height: 1.3;
+}
+
+h3 {
+  margin: 0 0 8px;
+  font-size: 17px;
+}
+
+section p,
+section small {
+  color: var(--texto-secundario);
+}
+
+section>div {
+  margin-top: 20px;
+}
+
+/* Campos */
+label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+input {
+  width: 100%;
+  min-height: 48px;
+  padding: 12px 14px;
+  border: 1px solid var(--borde);
+  border-radius: 10px;
+  background: var(--fondo);
+  color: var(--texto);
+  font: inherit;
+  font-size: 16px;
+}
+
+input::placeholder {
+  color: var(--texto-secundario);
+}
+
+input:focus-visible {
+  border-color: var(--azul);
+  outline: 3px solid rgb(0 140 255 / 20%);
+  outline-offset: 2px;
+}
+
+/* Total */
+#total-pagar {
+  display: block;
+  margin-top: 4px;
+  color: var(--dorado-claro);
+  font-size: 32px;
+  line-height: 1.3;
+}
+
+/* Comprobante */
+input[type="file"] {
+  padding: 10px;
+}
+
+input[type="file"]::file-selector-button {
+  margin-right: 12px;
+  padding: 10px 12px;
+  border: 1px solid var(--borde);
+  border-radius: 7px;
+  background: var(--tarjeta);
+  color: var(--texto);
+  font: inherit;
+  cursor: pointer;
+}
+
+#ayuda-comprobante {
+  display: block;
+  margin-top: 8px;
+  font-size: 13px;
+}
+
+/* Botón principal */
+button {
+  width: 100%;
+  min-height: 50px;
+  margin-top: 16px;
+  padding: 12px 20px;
+  border: 0;
+  border-radius: 10px;
+  background: var(--dorado);
+  color: var(--fondo);
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+button:hover:not(:disabled) {
+  background: var(--dorado-claro);
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 3px solid var(--azul);
+  outline-offset: 4px;
+}
+
+/* Pie de página */
+footer {
+  padding: 24px 16px;
+  border-top: 1px solid var(--borde);
+  text-align: center;
+}
+
+footer p {
+  margin: 0 0 4px;
+  color: var(--dorado);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+footer small {
+  color: var(--texto-secundario);
+}
+
+/* Celulares */
+@media (max-width: 600px) {
+  header {
+    min-height: 76px;
+    gap: 12px;
+  }
+  
+  header a:first-child {
+    font-size: 14px;
+  }
+  
+  header a:last-child {
+    padding: 8px 10px;
+    font-size: 12px;
+  }
+  
+  main {
+    margin-top: 28px;
+  }
+  
+  form section {
+    padding: 20px;
+    border-radius: 14px;
+  }
+  
+  h2 {
+    font-size: 21px;
+  }
+  
+}
+
+/* Ayuda debajo de la cantidad */
+#ayuda-cantidad {
+  display: block;
+  margin-top: 8px;
+  color: var(--texto-secundario);
+  font-size: 13px;
+}
+
+/* Mensaje de archivo inválido */
+.error-campo {
+  margin: 8px 0 0;
+  color: #ffb4ab;
+  font-size: 13px;
+}
+
+.error-campo:empty {
+  display: none;
+}
+
+/* Vista previa del comprobante */
+.vista-comprobante {
+  margin: 20px 0 0;
+  padding: 16px;
+  border: 1px solid var(--borde);
+  border-radius: 12px;
+  background: var(--fondo);
+}
+
+.vista-comprobante img {
+  display: block;
+  width: 100%;
+  max-height: 360px;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+.vista-comprobante figcaption {
+  margin-top: 12px;
+  overflow-wrap: anywhere;
+  color: var(--texto-secundario);
+  font-size: 13px;
+}
+
+.boton-quitar {
+  min-height: 44px;
+  margin-top: 12px;
+  border: 1px solid var(--borde);
+  background: transparent;
+  color: var(--texto);
+  font-size: 14px;
+}
+
+.boton-quitar:hover:not(:disabled) {
+  border-color: var(--dorado);
+  background: var(--tarjeta);
+}
+
+/* Conserva ocultos los elementos con este atributo */
+[hidden] {
+  display: none !important;
+}
+
+/* Confirmación de la solicitud */
+.confirmacion-solicitud {
+  margin-top: 32px;
+  padding: 28px;
+  border: 1px solid var(--borde);
+  border-radius: 18px;
+  background: var(--tarjeta);
+}
+
+.estado-solicitud {
+  display: inline-block;
+  padding: 6px 12px;
+  border: 1px solid rgb(232 184 75 / 30%);
+  border-radius: 8px;
+  background: rgb(232 184 75 / 8%);
+  color: var(--dorado-claro);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.confirmacion-solicitud h2 {
+  margin-top: 20px;
+}
+
+.confirmacion-solicitud>p {
+  color: var(--texto-secundario);
+}
+
+.resumen-solicitud {
+  margin-block: 24px;
+}
+
+.resumen-solicitud>div {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  padding-block: 14px;
+  border-bottom: 1px solid var(--borde);
+}
+
+.resumen-solicitud dt {
+  color: var(--texto-secundario);
+  font-size: 14px;
+}
+
+.resumen-solicitud dd {
+  margin: 0;
+  overflow-wrap: anywhere;
+  text-align: right;
+  font-weight: 700;
+}
+
+.nota-confirmacion {
+  padding-left: 14px;
+  border-left: 3px solid var(--azul);
+  font-size: 14px;
+}
+
+.enlace-participantes {
+  display: flex;
+  min-height: 48px;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+  border: 1px solid var(--borde);
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.enlace-participantes:hover {
+  border-color: var(--dorado);
+  color: var(--dorado-claro);
+}
+
+@media (max-width: 600px) {
+  .confirmacion-solicitud {
+    padding: 20px;
+  }
+  
+  .resumen-solicitud>div {
+    flex-direction: column;
+    gap: 4px;
+  }
+  
+  .resumen-solicitud dd {
+    text-align: left;
+  }
+}
+
+
+/* Formulario: composición y controles consistentes */
+body { font-family: "Segoe UI", Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+main { width: min(100% - 32px, 820px); }
+header { width: min(100% - 32px, 1120px); }
+form section { padding: 28px 32px; box-shadow: 0 10px 28px rgb(0 0 0 / 10%); }
+form section:first-child { display: grid; grid-template-columns: 1fr 1fr; column-gap: 24px; }
+form section:first-child > span, form section:first-child > h2 { grid-column: 1 / -1; }
+form section:first-child > span { justify-self: start; }
+form section:first-child > h2 { margin-bottom: 0; }
+form section:nth-child(2) > div:nth-of-type(2) { padding: 18px 20px; border: 1px solid rgb(232 184 75 / 25%); border-radius: 12px; background: rgb(232 184 75 / 5%); }
+input { min-width: 0; }
+input[type="file"] { font-size: 14px; }
+form button[type="submit"] { margin-top: 12px; }
+.confirmacion-solicitud { border-top: 3px solid var(--dorado); }
+[hidden] { display: none !important; }
+@media (max-width: 600px) {
+  form section { padding: 20px; }
+  form section:first-child { grid-template-columns: 1fr; }
+  header { flex-wrap: wrap; padding-block: 16px; }
+  header a:last-child { font-size: 12px; }
+}
+header img{display:block;max-width:100%;object-fit:contain}header a:first-child{flex-shrink:0}header a:last-child{min-height:44px;display:flex;align-items:center}

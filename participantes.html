@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="Consulta los participantes y números confirmados de SORTTEX PREMIUM.">
+
+    <title>Participantes | SORTTEX PREMIUM</title>
+
+    <link rel="stylesheet" href="css/estilos.css">
+    <link rel="stylesheet" href="css/participantes.css">
+
+    <script src="js/datos.js" defer></script>
+    <script src="js/participantes.js" defer></script>
+</head>
+
+<body>
+    <header class="cabecera">
+        <div class="contenedor cabecera-contenido">
+            <a class="marca" href="index.html" aria-label="SORTTEX, inicio"><img src="img/logo-sorttex.png" alt="SORTTEX PREMIUM" width="160" height="90"></a>
+
+            <nav class="navegacion" aria-label="Navegación principal">
+                <a href="index.html">Inicio</a>
+                <a href="participantes.html" aria-current="page">
+                    Participantes
+                </a>
+                <a href="ganadores.html">Ganadores</a>
+            </nav>
+
+            <a class="boton boton-pequeno" href="participar.html">
+                Participar
+            </a>
+        </div>
+    </header>
+
+    <main class="contenedor pagina-participantes">
+        <section class="introduccion" aria-labelledby="titulo-participantes">
+            <span class="etiqueta">SORTEO DE LAPTOP</span>
+
+            <h1 id="titulo-participantes">Encuentra tus números</h1>
+
+            <p>
+                Aquí aparecen las participaciones con pago aprobado.
+                Busca tu nombre o tu número de participación.
+            </p>
+        </section>
+
+        <section class="resumen" aria-label="Resumen de participaciones">
+            <div class="resumen-dato">
+                <span>Participaciones confirmadas</span>
+                <strong>
+                    <span id="cantidad-confirmadas">0</span>
+                    <small>de 100</small>
+                </strong>
+            </div>
+
+            <div class="resumen-avance">
+                <label for="avance-participaciones">
+                    Avance de participaciones
+                </label>
+
+                <progress id="avance-participaciones" value="0" max="100"></progress>
+            </div>
+        </section>
+
+        <section class="listado" aria-labelledby="titulo-listado">
+            <div class="listado-encabezado">
+                <div>
+                    <h2 id="titulo-listado">Participantes confirmados</h2>
+                    <p>Cada número representa una participación.</p>
+                </div>
+
+                <span class="estado-confirmado">Pago aprobado</span>
+            </div>
+
+            <div class="busqueda">
+                <label for="buscar-participante">
+                    Buscar participante
+                </label>
+
+                <input type="search" id="buscar-participante" placeholder="Escribe un nombre o número"
+                    autocomplete="off" aria-controls="lista-participantes">
+            </div>
+
+            <p id="resultado-busqueda" class="resultado-busqueda" role="status"></p>
+
+            <ul id="lista-participantes" class="lista-participantes"></ul>
+
+            <div id="sin-resultados" class="sin-resultados" hidden>
+                <h3>No encontramos coincidencias</h3>
+
+                <p>
+                    Revisa el nombre o número que ingresaste e intenta nuevamente.
+                </p>
+            </div>
+
+            <noscript>
+                <p>Activa JavaScript para consultar la lista de participantes.</p>
+            </noscript>
+        </section>
+
+        <aside class="aviso-revision">
+            <h2>¿Todavía no apareces?</h2>
+
+            <p>
+                Si ya enviaste tu comprobante, tu pago puede estar en revisión.
+                Tus números aparecerán cuando el administrador lo apruebe.
+            </p>
+        </aside>
+    </main>
+
+    <footer class="pie">
+        <div class="contenedor pie-contenido">
+            <div>
+                <a class="marca" href="index.html"><img src="img/logo-sorttex.png" alt="SORTTEX PREMIUM" width="160" height="90"></a>
+
+                <p>Tu oportunidad. Tu momento.</p>
+            </div>
+
+            <small class="firma">Desarrollado por LF TECH</small>
+        </div>
+    </footer>
+</body>
+
+</html>
